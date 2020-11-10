@@ -8,40 +8,18 @@ function App() {
   });
 
   function handleChange(event){
-  
-    const {name , value} = event.target;
-  // const value = event.target.value;
-  // const name = event.target.name;
-  console.log(value);
-  console.log(name);
+  const {name , value} = event.target;//destructering event.target
+  // console.log(value);
+  // console.log(name);
 
-   setContact((preValue)=>{
-      if (name==="fName"){
+  setContact((preValue)=>{
         return {
-          fName: value,
-          lName: preValue.lName,
-          email: preValue.email
-        }}
-        else if (name==="lName"){
-          return {
-            fName: preValue.fName,
-            lName: value,
-            email: preValue.email
-          }
-        }
-        else if (name==="email"){
-          return {
-            fName: preValue.fName,
-            lName: preValue.lName,
-            email: value
-          }
-      }
-
-
-    });
-
-  }
-
+          ...preValue,
+          //if we dont use [] , will create a new variable in the object .
+          [name]: value // using spread opeartor , we have to use braket to add it asa key on our object instead of being treated as a string 
+                }
+            });
+            }
 
   return (
     <div className="container">
